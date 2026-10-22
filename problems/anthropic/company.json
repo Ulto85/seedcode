@@ -1,0 +1,16 @@
+{
+  "name": "Anthropic",
+  "tagline": "AI safety lab behind Claude. Loop: a 90-minute CodeSignal progressive OA (4 levels), a 60-min practical phone screen, then an onsite with more practical coding, system design and a values/culture round.",
+  "notes": "Most reported: converting profiler stack samples into start/end trace events (with de-noising follow-ups), the multi-level in-memory banking system OA (accounts, activity ranking, transfers with acceptance, merges and historical balances), a same-host web crawler that becomes concurrent, an LRU cache made crash-durable, and a greedy longest-match tokenizer (sometimes as a code-review/debug exercise). Questions are practical, not puzzle-y: interviewers care about clarifying ambiguous rules, working code that passes hidden unit tests, clean incremental design that survives the next level, and talking through concurrency, termination and scaling follow-ups.",
+  "sources": [
+    {"title": "PracHub: Anthropic coding & algorithms questions", "url": "https://prachub.com/companies/anthropic/categories/coding-and-algorithms"},
+    {"title": "PracHub: In-memory banking OA, then an LLM classifier screen", "url": "https://prachub.com/interview-experiences/anthropic-software-engineer-interview-experience-in-memory-banking-oa-then-a-surprise-llm-classifier-screen"},
+    {"title": "PracHub: Same-host web crawler, single-threaded then concurrent", "url": "https://prachub.com/interview-questions/same-host-web-crawler-single-threaded-then-concurrent-with-a-thread-safe-visited-set"},
+    {"title": "PracHub: Convert stack samples into trace events", "url": "https://prachub.com/interview-questions/convert-stack-samples-into-trace-events"},
+    {"title": "PracHub: Implement a longest-match tokenizer", "url": "https://prachub.com/interview-questions/implement-a-longest-match-tokenizer-2"},
+    {"title": "LinkJob: Anthropic coding interview questions (profiler trace, crawler, tokenizer, LRU)", "url": "https://www.linkjob.ai/interview-questions/anthropic-coding-interview/"},
+    {"title": "1point3acres: Anthropic phone screen, profiler sampling question", "url": "https://www.1point3acres.com/interview/thread/1112538"},
+    {"title": "1point3acres: Anthropic CodeSignal bank system OA", "url": "https://www.1point3acres.com/interview/thread/1125621"},
+    {"title": "Hello Interview: Web Crawler Multithreaded (asked at Anthropic)", "url": "https://www.hellointerview.com/community/questions/web-crawler-multithreaded/cm5eguhad02yw838ot9p159t6"}
+  ]
+}

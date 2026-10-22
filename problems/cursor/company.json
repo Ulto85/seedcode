@@ -1,0 +1,17 @@
+{
+  "name": "Cursor (Anysphere)",
+  "tagline": "Makers of Cursor, the AI code editor. Recruiter call, one or two ~60 min technical screens (practical, product-flavored coding; reportedly no AI help beyond autocomplete in the first screens), then a paid on-site project day or two working on a real problem with the team, plus a founder chat.",
+  "notes": "By far the most reported phone-screen question is building a Merkle tree over a repository and using it to diff two snapshots (find added/modified/removed files, skip identical subtrees), sometimes with a focus on deterministic hashing. Also reported: a streaming Markdown code-fence parser (chunks split delimiters arbitrarily), a user/team/company notification rate limiter (new-grad backend), an in-memory transactional key-value store with a discussion of conflicting concurrent writes, and design rounds (CI/CD or cron job scheduler, versioned IDE settings). Interviewers care about clean, working code for a realistic editor/infra problem, pinning down the contract (ordering, hashing format, edge cases) before coding, reasoning about incremental/streaming behaviour and complexity, and, in the project day, whether you actually use and care about the product.",
+  "sources": [
+    {"title": "PracHub: Cursor interview questions", "url": "https://prachub.com/companies/cursor"},
+    {"title": "PracHub: Cursor coding & algorithms questions", "url": "https://prachub.com/companies/cursor/categories/coding-and-algorithms"},
+    {"title": "PracHub: Implement a Merkle-tree repo diff", "url": "https://prachub.com/coding-questions/implement-a-merkle-tree-repo-diff"},
+    {"title": "PracHub: Implement Notification Rate Limiter", "url": "https://prachub.com/coding-questions/implement-notification-rate-limiter"},
+    {"title": "PracHub: Build a streaming Markdown code fence parser", "url": "https://prachub.com/interview-questions/build-a-streaming-markdown-code-fence-parser"},
+    {"title": "PracHub: Design an in-memory transactional key-value store", "url": "https://prachub.com/interview-questions/design-an-in-memory-transactional-key-value-store"},
+    {"title": "1point3acres: Cursor full-time SWE tech phone screen (Merkle tree)", "url": "https://www.1point3acres.com/interview/thread/1166086"},
+    {"title": "Codemia: Implement a streaming Markdown parser (Cursor)", "url": "https://codemia.io/practice/implement-a-streaming-markdown-parser"},
+    {"title": "techinterview.org: What the Cursor engineering interview screens for", "url": "https://www.techinterview.org/post/3233475435/cursor-engineering-interview-what-it-screens-for/"},
+    {"title": "Inside Cursor's hiring strategy: no AI in interviews and a 2-day project with the team", "url": "https://www.aol.com/inside-cursors-hiring-strategy-no-052015324.html"}
+  ]
+}

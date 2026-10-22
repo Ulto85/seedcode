@@ -1,0 +1,16 @@
+{
+  "name": "OpenAI",
+  "tagline": "Makers of ChatGPT and the OpenAI API. Phone screen is ~60 min of practical coding; the onsite adds more coding, system design, a project deep dive and behavioral.",
+  "notes": "OpenAI favours practical, multi-part 'build a working thing' questions over trick puzzles. Most reported for SWE: the GPU credit ledger (expiring grants, spend soonest-expiring first, then out-of-order events), a spreadsheet with formula cells and cycle detection, cd/path resolution with symlinks, a memory allocator (malloc/free, then make it logarithmic), plus KV-store serialization, time-based KV stores, resumable iterators and in-memory databases. Interviewers care about getting a complete, working, readable solution within the hour, pinning down the spec (boundaries, ties, error cases) before coding, writing your own tests, and then extending cleanly when the follow-up arrives.",
+  "sources": [
+    {"title": "PracHub: OpenAI coding & algorithms questions", "url": "https://prachub.com/companies/openai/categories/coding-and-algorithms"},
+    {"title": "PracHub: OpenAI software engineer questions", "url": "https://prachub.com/companies/openai/positions/software-engineer"},
+    {"title": "PracHub: GPU credit coding question (interview experience)", "url": "https://prachub.com/interview-experiences/openai-software-engineer-interview-experience-a-gpu-credit-coding-question-then-a-surprise-fullstack-design-round"},
+    {"title": "PracHub: spreadsheet engine with cell references and cycle detection", "url": "https://prachub.com/interview-questions/spreadsheet-engine-with-setcell-getcell-cell-references-and-cycle-detection"},
+    {"title": "PracHub: leftmost-fit memory allocator", "url": "https://prachub.com/interview-questions/leftmost-fit-memory-allocator-allocate-consecutive-units-and-free-by-owner"},
+    {"title": "PracHub: malloc and free over fixed memory, then make both logarithmic", "url": "https://prachub.com/interview-questions/implement-malloc-and-free-over-fixed-memory-then-make-both-logarithmic"},
+    {"title": "Hello Interview: OpenAI coding questions", "url": "https://www.hellointerview.com/blog/openai-coding-questions"},
+    {"title": "Hello Interview: Unix cd with symbolic link resolution", "url": "https://www.hellointerview.com/community/questions/unix-cd-resolution/cmbskxz3y004n07adimbogre1"},
+    {"title": "1point3acres: OpenAI phone screen, 'cd' function implementation", "url": "https://www.1point3acres.com/interview/thread/1084023"}
+  ]
+}

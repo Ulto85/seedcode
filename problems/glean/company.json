@@ -1,0 +1,20 @@
+{
+  "name": "Glean",
+  "tagline": "Enterprise AI search and assistant over a company's own docs, chat and apps (permission-aware). The SWE loop is a LeetCode-style technical phone screen (sometimes a practical build), then an onsite with 1-2 coding rounds (one often open-ended and 'practical', where you code mostly on your own for a long stretch), system design and behavioral.",
+  "notes": "Reported SWE coding questions (2026) mix classic algorithms with search-flavoured practical tasks: simulating documents assigned to parallel indexers (i % m with wrap-around, drops, then a top-k load report), top-k prefix typeahead filtered by the user's department under a tight memory budget, a BPE tokenizer (train with a frequency threshold, then encode/decode), grouping words into synonym sets by shared surrounding context, plus word search in a grid, k-th largest across two sorted arrays, a no-parentheses calculator, 2048 tile moves and OOD chess. One new-grad report describes a 2-hour assignment building a module in stages, where finishing most parts mattered. ML candidates have had a 75-minute AI-assisted build (a rate-limited crawler). Interviewers care about settling the ambiguous rules (ties, boundaries, unknown input) up front, getting a correct baseline before optimising, stating and then improving the complexity, and making steady independent progress in the practical round.",
+  "sources": [
+    {"title": "PracHub: Glean interview questions", "url": "https://prachub.com/companies/glean"},
+    {"title": "PracHub: Glean SWE coding & algorithms questions", "url": "https://prachub.com/companies/glean/positions/software-engineer/categories/coding-and-algorithms"},
+    {"title": "PracHub: Simulate modulo-assigned document indexers with wrap-around and rank the busiest", "url": "https://prachub.com/coding-questions/simulate-modulo-assigned-document-indexers-with-wrap-around-and-rank-the-busiest"},
+    {"title": "PracHub: Simulate document assignment to indexers (Step 1 / Step 2)", "url": "https://prachub.com/coding-questions/simulate-document-assignment-to-indexers"},
+    {"title": "PracHub: Serve top-k prefix suggestions filtered by department within a tight memory budget", "url": "https://prachub.com/interview-questions/serve-top-k-prefix-suggestions-filtered-by-department-within-a-tight-memory-budget"},
+    {"title": "PracHub: Return top department suggestions", "url": "https://prachub.com/coding-questions/return-top-department-suggestions"},
+    {"title": "PracHub: Implement a BPE tokenizer (threshold training, encode, decode)", "url": "https://prachub.com/interview-questions/implement-a-byte-pair-encoding-tokenizer-threshold-training-encode-and-decode"},
+    {"title": "PracHub: Group words into transitive synonym sets by shared context", "url": "https://prachub.com/coding-questions/group-words-into-transitive-synonym-sets-by-shared-two-words-before-and-after-context"},
+    {"title": "PracHub: AI-paired rate-limited Wikipedia crawler (ML onsite)", "url": "https://prachub.com/interview-questions/ai-paired-rate-limited-wikipedia-crawler-that-prioritizes-unseen-title-initials"},
+    {"title": "PracHub: Glean (CA) SWE practical coding and system design onsite", "url": "https://prachub.com/interview-experiences/glean-ca-software-engineer-practical-coding-and-system-design-onsite-8c885c22da"},
+    {"title": "1point3acres: Glean interview threads (parallel document indexing, BPE tokenizer, word search, k-th largest)", "url": "https://www.1point3acres.com/interview/company/glean"},
+    {"title": "LeetCode Discuss: Glean new grad full loop experience", "url": "https://leetcode.com/discuss/interview-experience/6487496"},
+    {"title": "Taro: Glean software engineer interview experience (Nov 2024)", "url": "https://www.jointaro.com/interviews/companies/glean/work-experiences/software-engineer-palo-alto-ca-november-15-2024-4-6fcb4da6/"}
+  ]
+}

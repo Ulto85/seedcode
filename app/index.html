@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SeedCode</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/material-darker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/comment/comment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<style>
+:root{
+  --bg:#1a1a1a;--panel:#262626;--panel2:#303030;--panel3:#3a3a3a;--border:#3a3a3a;--text:#e6e6e6;--muted:#9a9a9a;
+  --accent:#ffa116;--green:#2cbb5d;--red:#ef4743;--yellow:#ffc01e;--blue:#4a9eff;--purple:#b48cff;--code:#1e1e1e;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:14px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+button{font:inherit;cursor:pointer;border:0;border-radius:6px;padding:6px 12px;color:var(--text);background:var(--panel2);white-space:nowrap}
+button:hover{filter:brightness(1.2)}
+button:disabled{opacity:.5;cursor:default}
+code,pre{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px}
+pre{background:var(--code);border:1px solid var(--border);border-radius:6px;padding:10px 12px;overflow-x:auto;white-space:pre}
+:not(pre)>code{background:var(--panel2);padding:1px 5px;border-radius:4px}
+a{color:var(--blue)}
+.hint{color:var(--muted);font-size:12px}
+
+/* ---------- header ---------- */
+header{height:50px;display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--panel);border-bottom:1px solid var(--border)}
+.brand{font-weight:700;color:var(--accent);margin-right:4px;white-space:nowrap;cursor:pointer}
+.spacer{flex:1}
+.timer{display:flex;align-items:center;gap:2px;background:var(--panel2);border-radius:6px;padding:2px}
+.timer .clock{font-family:ui-monospace,Menlo,monospace;font-size:15px;padding:2px 10px;min-width:78px;text-align:center}
+.timer .clock.over{color:var(--red)}
+.timer .clock.paused{color:var(--muted)}
+.timer button{background:none;padding:4px 7px;color:var(--muted)}
+.timer button:hover{color:var(--text)}
+#runBtn{background:var(--panel2)}
+#submitBtn{background:var(--green);color:#fff;font-weight:600}
+#cxBtn{background:var(--purple);color:#1a1a1a;font-weight:600}
+#probeBtn{background:var(--accent);color:#1a1a1a;font-weight:700}
+.iconbtn{background:none;color:var(--muted);font-size:18px;padding:2px 8px}
+
+/* ---------- layout ---------- */
+main{display:flex;height:calc(100% - 50px)}
+#side{width:250px;flex:none;overflow:auto;background:var(--panel);border-right:1px solid var(--border)}
+#side.hide{display:none}
+#left{width:42%;min-width:300px;overflow:auto;border-right:1px solid var(--border);background:var(--panel)}
+#right{flex:1;display:flex;flex-direction:column;min-width:0}
+#search{width:calc(100% - 16px);margin:8px;background:var(--code);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:6px 8px;font:inherit}
+.co{border-bottom:1px solid var(--border)}
+.co-h{display:flex;align-items:center;gap:6px;padding:8px 10px;cursor:pointer;font-weight:600}
+.co-h:hover{background:var(--panel2)}
+.co-h .cnt{margin-left:auto;color:var(--muted);font-weight:400;font-size:12px}
+.co-h .caret{color:var(--muted);width:10px}
+.co ul{list-style:none;margin:0;padding:0 0 6px}
+.co.closed ul{display:none}
+.co li{display:flex;align-items:center;gap:7px;padding:4px 10px 4px 26px;cursor:pointer;font-size:13px}
+.co li:hover{background:var(--panel2)}
+.co li.on{background:var(--panel3)}
+.co li .dd{width:7px;height:7px;border-radius:50%;flex:none}
+.dd.Easy{background:#00b8a3}.dd.Medium{background:var(--yellow)}.dd.Hard{background:var(--red)}
+.co li .sty{font-size:10px;color:var(--purple);border:1px solid var(--purple);border-radius:6px;padding:0 4px;opacity:.8}
+.co li .ok{margin-left:auto;color:var(--green);font-size:12px}
+
+.tabs{display:flex;gap:2px;padding:6px 8px 0;background:var(--panel);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:2}
+.tab{background:none;border-radius:6px 6px 0 0;color:var(--muted);padding:6px 12px}
+.tab.on{color:var(--text);background:var(--panel2)}
+.pane{padding:16px 20px}
+.md h1{font-size:20px;margin:0 0 6px}
+.md h3{margin:18px 0 6px;font-size:15px}
+.md table{border-collapse:collapse}.md td,.md th{border:1px solid var(--border);padding:4px 8px}
+.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px;color:var(--muted);font-size:12px}
+.pill{font-weight:600;padding:2px 8px;border-radius:10px;background:var(--panel2);font-size:12px}
+.pill.Easy{color:#00b8a3}.pill.Medium{color:var(--yellow)}.pill.Hard{color:var(--red)}
+.pill.tag{font-weight:400;color:var(--muted)}
+
+#editorWrap{flex:1;min-height:0;position:relative}
+.CodeMirror{height:100%;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:14px}
+#bottom{height:40%;border-top:1px solid var(--border);overflow:auto;background:var(--panel)}
+#bottom .pane{padding:12px 16px}
+
+.summary{font-size:17px;font-weight:600;margin-bottom:10px}
+.summary.ok{color:var(--green)}.summary.bad{color:var(--red)}
+.trow{border:1px solid var(--border);border-radius:6px;margin-bottom:6px;background:var(--panel2)}
+.thead{display:flex;gap:10px;align-items:center;padding:7px 10px;cursor:pointer}
+.dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--muted)}
+.pass .dot{background:var(--green)}.fail .dot,.error .dot{background:var(--red)}.tle .dot{background:var(--yellow)}
+.tg{font-size:11px;color:var(--muted);border:1px solid var(--border);padding:0 6px;border-radius:8px}
+.ms{margin-left:auto;color:var(--muted);font-size:12px}
+.tbody{padding:0 10px 10px;display:none}
+.trow.open .tbody{display:block}
+.lbl{color:var(--muted);font-size:12px;margin:8px 0 2px}
+table.ops{border-collapse:collapse;width:100%;font-family:ui-monospace,Menlo,monospace;font-size:12px}
+table.ops td,table.ops th{border-bottom:1px solid var(--border);padding:3px 6px;text-align:left;vertical-align:top;word-break:break-all}
+table.ops th{color:var(--muted);font-weight:500}
+tr.bad td{background:rgba(239,71,67,.15)}
+.err{color:#ff8a87;white-space:pre-wrap}
+
+/* ---------- modals ---------- */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:10;padding:16px}
+.modal.on{display:flex}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:18px;width:min(560px,100%);max-height:92vh;overflow:auto}
+.card.wide{width:min(980px,100%)}
+.card h3{margin:0 0 4px}
+.levels{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:12px 0}
+.levels label{display:flex;gap:8px;align-items:flex-start;background:var(--panel2);padding:8px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.levels label:has(input:checked){border-color:var(--accent)}
+.levels small{display:block;color:var(--muted)}
+textarea{width:100%;min-height:80px;background:var(--code);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:8px;font:inherit}
+.row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--accent);color:#1a1a1a;font-weight:600;padding:10px 18px;border-radius:8px;display:none;z-index:20;max-width:90vw}
+
+.cx-chips{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:12px 0}
+.chip{background:var(--panel2);border-radius:8px;padding:10px 12px}
+.chip .k{color:var(--muted);font-size:12px}
+.chip .v{font-size:20px;font-weight:700;font-family:ui-monospace,Menlo,monospace}
+.chip .v.mine{color:var(--accent)}.chip .v.ref{color:var(--blue)}
+.chip .verdict{font-size:12px;margin-top:2px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chart{background:var(--code);border:1px solid var(--border);border-radius:8px;padding:8px}
+.chart h4{margin:2px 4px 6px;font-size:13px}
+.chart svg{width:100%;height:auto;display:block}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--muted);margin:8px 2px}
+.legend i{display:inline-block;width:12px;height:3px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.cx-table{width:100%;border-collapse:collapse;font-family:ui-monospace,Menlo,monospace;font-size:12px;margin-top:10px}
+.cx-table td,.cx-table th{border-bottom:1px solid var(--border);padding:3px 6px;text-align:right}
+.cx-table th{color:var(--muted);font-weight:500}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--muted);border-top-color:transparent;border-radius:50%;animation:sp 1s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+.home{max-width:720px}
+.home .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:14px}
+.home .tile{background:var(--panel2);border-radius:8px;padding:12px;cursor:pointer;border:1px solid transparent}
+.home .tile:hover{border-color:var(--accent)}
+.home .tile b{display:block;margin-bottom:4px}
+.bar{height:5px;background:var(--panel3);border-radius:3px;margin-top:8px;overflow:hidden}.bar>i{display:block;height:100%;background:var(--green)}
+
+@media (max-width:900px){
+  main{flex-direction:column;height:auto}
+  #side{width:100%;max-height:35vh}
+  #left{width:100%;max-height:55vh;min-width:0}
+  #right{height:85vh}
+  header{flex-wrap:wrap;height:auto;padding:8px}
+  .charts,.cx-chips{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+  <button class="iconbtn" id="sideBtn" title="Toggle problem list">☰</button>
+  <span class="brand" id="brand">🌱 SeedCode</span>
+  <span class="spacer"></span>
+  <div class="timer" title="Interview timer">
+    <span class="clock" id="clock">45:00</span>
+    <button id="pauseBtn" title="Pause / resume (Alt+P)">⏸</button>
+    <button id="resetTimer" title="Reset timer">↺</button>
+    <button id="modeBtn" title="Switch countdown / stopwatch">⏱</button>
+    <button id="lenBtn" title="Set interview length">⚙</button>
+  </div>
+  <button id="mockBtn" title="Random unsolved problem from this company, fresh timer">🎲 Interview mode</button>
+  <button id="resetBtn" title="Reset to starter code">Reset code</button>
+  <button id="runBtn" title="Cmd/Ctrl+Enter">▶ Run</button>
+  <button id="submitBtn" title="Cmd/Ctrl+Shift+Enter: runs hidden + stretch tests too">Submit</button>
+  <button id="cxBtn" title="Measure time & space complexity">📈 Complexity</button>
+  <button id="probeBtn" title="Ask Claude for help (Cmd/Ctrl+I)">Probe</button>
+</header>
+<main>
+  <nav id="side">
+    <input id="search" placeholder="Search problems or tags…">
+    <div id="tree"></div>
+  </nav>
+  <section id="left">
+    <div class="tabs" id="tabs">
+      <button class="tab on" data-t="desc">Description</button>
+      <button class="tab" data-t="cases">Test cases</button>
+      <button class="tab" data-t="company">Company</button>
+    </div>
+    <div class="pane md" id="desc"></div>
+    <div class="pane" id="cases" style="display:none"></div>
+    <div class="pane md" id="company" style="display:none"></div>
+  </section>
+  <section id="right">
+    <div id="editorWrap"><textarea id="code"></textarea></div>
+    <div id="bottom"><div class="pane" id="out"></div></div>
+  </section>
+</main>
+
+<div class="modal" id="probeModal">
+  <div class="card">
+    <h3>Probe the interviewer</h3>
+    <div class="hint">Sends your code, last test results and note to Claude Code running in this repo. The prompt is also copied to your clipboard, so you can paste it into any AI chat.</div>
+    <div class="levels">
+      <label><input type="radio" name="lvl" value="nudge" checked><span>Nudge<small>One line, no spoilers</small></span></label>
+      <label><input type="radio" name="lvl" value="hint"><span>Hint<small>A concrete idea to try</small></span></label>
+      <label><input type="radio" name="lvl" value="debug"><span>Debug my code<small>Why is it failing?</small></span></label>
+      <label><input type="radio" name="lvl" value="complexity"><span>Complexity<small>Explain my Big-O</small></span></label>
+      <label><input type="radio" name="lvl" value="review"><span>Review<small>Interviewer-style feedback</small></span></label>
+      <label><input type="radio" name="lvl" value="approach"><span>Approach<small>Outline the algorithm</small></span></label>
+      <label><input type="radio" name="lvl" value="solution"><span>Full solution<small>Show me the answer</small></span></label>
+    </div>
+    <textarea id="note" placeholder="Optional: what are you stuck on? (Cmd/Ctrl+Enter to send)"></textarea>
+    <div class="row"><button id="cancelProbe">Cancel</button><button id="sendProbe" style="background:var(--accent);color:#1a1a1a;font-weight:700">Send probe</button></div>
+  </div>
+</div>
+
+<div class="modal" id="cxModal">
+  <div class="card wide">
+    <div style="display:flex;align-items:center;gap:8px"><h3 style="flex:1">Time &amp; space complexity</h3><button id="cxClose">Close</button></div>
+    <div class="hint" id="cxSub">Runs your code on growing inputs and fits the curve. Measurements are empirical, so treat them as a sanity check on your own analysis.</div>
+    <div id="cxBody"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const J = x => { const s = JSON.stringify(x); return s && s.length > 600 ? s.slice(0, 600) + ' …' : s; };
+const store = {
+  get(k, d=null){ try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+};
+const api = (path, body) => fetch(path, body ? {method:'POST', body: JSON.stringify(body)} : undefined).then(async r => {
+  const j = await r.json(); if (!r.ok) throw new Error(j.error || r.statusText); return j;
+});
+
+let companies = [], cur = null, lastRun = {}, lastCx = {};
+const key = () => cur ? `${cur.company}/${cur.slug}` : '';
+
+// ---------------------------------------------------------------- editor
+const cm = CodeMirror.fromTextArea($('#code'), {
+  mode:'python', theme:'material-darker', lineNumbers:true, indentUnit:4, tabSize:4,
+  matchBrackets:true, autoCloseBrackets:true,
+  extraKeys:{
+    Tab: c => c.somethingSelected() ? c.indentSelection('add') : c.replaceSelection('    ', 'end'),
+    'Shift-Tab': c => c.indentSelection('subtract'),
+    'Cmd-Enter': () => run('run'), 'Ctrl-Enter': () => run('run'),
+    'Shift-Cmd-Enter': () => run('submit'), 'Shift-Ctrl-Enter': () => run('submit'),
+    'Cmd-/': 'toggleComment', 'Ctrl-/': 'toggleComment',
+    'Cmd-I': () => openProbe(), 'Ctrl-I': () => openProbe(),
+  }
+});
+cm.on('change', () => cur && store.set('code:' + key(), cm.getValue()));
+
+function toast(msg, ms=4000){ const t=$('#toast'); t.textContent=msg; t.style.display='block'; clearTimeout(t._h); t._h=setTimeout(()=>t.style.display='none', ms); }
+
+// ---------------------------------------------------------------- timer
+// per problem: {mode:'down'|'up', limit:minutes, acc:ms counted, since:timestamp|null (running)}
+function T(){ return store.get('timer:' + key(), null) || {mode:'down', limit: cur?.minutes || 45, acc:0, since:Date.now()}; }
+function saveT(t){ store.set('timer:' + key(), t); renderClock(); }
+function elapsedMs(t=T()){ return t.acc + (t.since ? Date.now() - t.since : 0); }
+function fmt(ms){ const s = Math.floor(Math.abs(ms)/1000); const h = Math.floor(s/3600), m = Math.floor(s/60)%60, ss = s%60;
+  return (h ? h + ':' + String(m).padStart(2,'0') : String(m).padStart(2,'0')) + ':' + String(ss).padStart(2,'0'); }
+function renderClock(){
+  if (!cur) return;
+  const t = T(), e = elapsedMs(t), c = $('#clock');
+  if (t.mode === 'down') {
+    const left = t.limit*60000 - e;
+    c.textContent = (left < 0 ? '+' : '') + fmt(left);
+    c.classList.toggle('over', left < 0);
+  } else { c.textContent = fmt(e); c.classList.remove('over'); }
+  c.classList.toggle('paused', !t.since);
+  $('#pauseBtn').textContent = t.since ? '⏸' : '▶';
+  $('#modeBtn').textContent = t.mode === 'down' ? '⏱' : '⏳';
+}
+function togglePause(){ const t = T(); if (t.since){ t.acc += Date.now() - t.since; t.since = null; } else t.since = Date.now(); saveT(t); }
+setInterval(renderClock, 250);
+$('#pauseBtn').onclick = togglePause;
+$('#resetTimer').onclick = () => { const t = T(); saveT({...t, acc:0, since:Date.now()}); };
+$('#modeBtn').onclick = () => { const t = T(); t.mode = t.mode === 'down' ? 'up' : 'down'; saveT(t); toast(t.mode === 'down' ? 'Countdown mode' : 'Stopwatch mode', 1500); };
+$('#lenBtn').onclick = () => { const t = T(); const v = prompt('Interview length in minutes', t.limit); if (v && +v > 0) { t.limit = +v; saveT(t); } };
+document.addEventListener('visibilitychange', renderClock);
+
+// ---------------------------------------------------------------- sidebar
+function solved(k){ return store.get('solved:' + k, false); }
+function renderTree(){
+  const q = $('#search').value.trim().toLowerCase();
+  const open = store.get('open', {});
+  $('#tree').innerHTML = companies.map(c => {
+    const probs = c.problems.filter(p => !q || (c.name + ' ' + p.title + ' ' + p.tags.join(' ') + ' ' + p.difficulty).toLowerCase().includes(q));
+    if (!probs.length) return '';
+    const done = c.problems.filter(p => solved(c.slug + '/' + p.slug)).length;
+    const isOpen = q || open[c.slug] !== false;
+    return `<div class="co ${isOpen ? '' : 'closed'}" data-c="${c.slug}">
+      <div class="co-h"><span class="caret">${isOpen ? '▾' : '▸'}</span>${esc(c.name)}<span class="cnt">${done}/${c.problems.length}</span></div>
+      <ul>${probs.map(p => `<li data-k="${c.slug}/${p.slug}" class="${key() === c.slug + '/' + p.slug ? 'on' : ''}"><span class="dd ${p.difficulty}"></span>${esc(p.title)}${p.style ? '<span class="sty" title="Practice in the company\'s style, not a reported question">style</span>' : ''}${solved(c.slug + '/' + p.slug) ? '<span class="ok">✓</span>' : ''}</li>`).join('')}</ul></div>`;
+  }).join('') || '<div class="pane hint">No matches.</div>';
+  $$('.co-h').forEach(h => h.onclick = () => { const s = h.parentNode.dataset.c; const o = store.get('open', {}); o[s] = h.parentNode.classList.contains('closed'); store.set('open', o); renderTree(); });
+  $$('#tree li').forEach(li => li.onclick = () => { const [c, p] = li.dataset.k.split('/'); load(c, p); });
+}
+$('#search').oninput = renderTree;
+$('#sideBtn').onclick = () => { $('#side').classList.toggle('hide'); store.set('sideHidden', $('#side').classList.contains('hide')); cm.refresh(); };
+if (store.get('sideHidden')) $('#side').classList.add('hide');
+
+// ---------------------------------------------------------------- views
+function showTab(t){
+  $$('.tab').forEach(x => x.classList.toggle('on', x.dataset.t === t));
+  ['desc','cases','company'].forEach(id => $('#' + id).style.display = id === t ? '' : 'none');
+}
+$$('.tab').forEach(b => b.onclick = () => showTab(b.dataset.t));
+
+function companyHTML(c){
+  return `<h1>${esc(c.name)}</h1><p>${esc(c.tagline)}</p>${c.notes ? `<h3>What they ask</h3><p>${esc(c.notes)}</p>` : ''}
+    <h3>Problems</h3><ul>${c.problems.map(p => `<li><a href="#" data-k="${c.slug}/${p.slug}">${esc(p.title)}</a> <span class="pill ${p.difficulty}">${p.difficulty}</span>${solved(c.slug+'/'+p.slug) ? ' ✓' : ''}</li>`).join('')}</ul>
+    ${c.sources?.length ? `<h3>Sources</h3><ul>${c.sources.map(s => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a></li>`).join('')}</ul>` : ''}
+    <p class="hint">Questions are reconstructed from public interview reports and written in our own words. Real interviews vary.</p>`;
+}
+function wireLinks(el){ el.querySelectorAll('a[data-k]').forEach(a => a.onclick = e => { e.preventDefault(); const [c,p] = a.dataset.k.split('/'); load(c,p); }); }
+
+function home(){
+  cur = null; location.hash = '';
+  const total = companies.reduce((a,c) => a + c.problems.length, 0);
+  const done = companies.reduce((a,c) => a + c.problems.filter(p => solved(c.slug+'/'+p.slug)).length, 0);
+  $('#desc').innerHTML = `<div class="home"><h1>🌱 SeedCode</h1><p><i>LeetCode is for FAANG. SeedCode is for the startups.</i></p>
+    <p>Reported coding questions from top startups, with real test suites, an interview timer, a complexity profiler and an AI interviewer you can probe for hints.</p>
+    <p class="hint">${done}/${total} solved · Cmd+Enter run · Cmd+Shift+Enter submit · Cmd+I probe · Alt+P pause timer</p>
+    <div class="grid">${companies.map(c => { const d = c.problems.filter(p => solved(c.slug+'/'+p.slug)).length;
+      return `<div class="tile" data-c="${c.slug}"><b>${esc(c.name)}</b><span class="hint">${c.problems.length} problems</span><div class="bar"><i style="width:${c.problems.length ? 100*d/c.problems.length : 0}%"></i></div></div>`; }).join('')}</div></div>`;
+  $$('.tile').forEach(t => t.onclick = () => { const c = companies.find(x => x.slug === t.dataset.c); if (c.problems[0]) load(c.slug, c.problems[0].slug); });
+  showTab('desc');
+  $('#company').innerHTML = ''; $('#cases').innerHTML = '';
+  cm.setValue('# Pick a problem from the left.\n'); $('#out').innerHTML = '';
+  renderTree();
+}
+$('#brand').onclick = home;
+
+async function load(company, slug){
+  let p;
+  $('#desc').innerHTML = '<span class="spin"></span>Loading… (first load generates the expected outputs)';
+  try { p = await api(`/api/problem/${company}/${slug}`); }
+  catch(e) { $('#desc').innerHTML = `<pre class="err">${esc(e.message)}</pre>`; return; }
+  cur = p; location.hash = `${company}/${slug}`; store.set('last', `${company}/${slug}`);
+  const c = companies.find(x => x.slug === company);
+  $('#desc').innerHTML = `<h1>${esc(p.title)}</h1><div class="meta"><span class="pill ${p.difficulty}">${p.difficulty}</span>${p.style ? '<span class="pill" style="color:var(--purple)" title="Not a reported question: written in the style of what candidates describe">Practice · in their style</span>' : '<span class="pill" style="color:var(--blue)" title="Based on a question candidates reported">Reported question</span>'}${p.tags.map(t => `<span class="pill tag">${esc(t)}</span>`).join('')}<span>${esc(p.source)}</span>${solved(key()) ? '<span class="pill" style="color:var(--green)">✓ Solved</span>' : ''}</div>` + marked.parse(p.description);
+  $('#company').innerHTML = c ? companyHTML(c) : ''; wireLinks($('#company'));
+  renderCases();
+  let saved = store.get('code:' + key());
+  if (saved == null && company === 'decagon') { try { saved = localStorage.getItem('code:' + slug); } catch(e) {} }  // code from the old single-company app
+  cm.setValue(saved ?? p.starter); cm.clearHistory();
+  if (!store.get('timer:' + key())) saveT({mode:'down', limit:p.minutes || 45, acc:0, since:Date.now()});
+  renderClock();
+  lastRun[key()] ? renderResults(lastRun[key()]) : ($('#out').innerHTML = `<span class="hint">▶ Run (Cmd+Enter) runs the visible tests. Submit also runs hidden and stretch tests. 📈 Complexity measures your Big-O. Probe asks Claude for help.</span>`);
+  $('#cxBtn').disabled = !p.has_scale; $('#cxBtn').title = p.has_scale ? 'Measure time & space complexity' : 'No benchmark for this problem (fixed-size input)';
+  showTab('desc'); renderTree();
+}
+
+function callStr(call, args){ return `${call}(${(args||[]).map(a => JSON.stringify(a)).join(', ')})`; }
+function opsTable(t, got, offset=0){
+  const fl = (a,b) => typeof a === 'number' && typeof b === 'number' && Math.abs(a-b) < 1e-6;
+  let h = '<table class="ops"><tr><th>#</th><th>call</th><th>expected</th>' + (got ? '<th>got</th>' : '') + '</tr>';
+  h += `<tr><td></td><td>${esc(t.cls)}(${esc(typeof t.init === 'string' ? t.init : t.init.map(a => J(a)).join(', '))})</td><td>-</td>${got ? '<td>-</td>' : ''}</tr>`;
+  t.ops.forEach(([m,a], j) => {
+    const g = got ? got[j] : undefined, ex = t.expected[j];
+    const bad = got && j < got.length && JSON.stringify(g) !== JSON.stringify(ex) && !fl(g, ex);
+    h += `<tr class="${bad ? 'bad' : ''}"><td>${j + offset}</td><td>${esc(m)}(${esc(a.map(x => J(x)).join(', '))})</td><td>${esc(J(ex))}</td>${got ? `<td>${j < got.length ? esc(J(g)) : '—'}</td>` : ''}</tr>`;
+  });
+  return h + '</table>';
+}
+function renderCases(){
+  $('#cases').innerHTML = cur.tests.map(t => `<div class="trow open"><div class="thead"><b>${esc(t.name)}</b><span class="tg">${t.tag}</span>${t.hidden ? '<span class="tg">hidden</span>' : ''}</div><div class="tbody">` +
+    (t.hidden ? '<span class="hint">Hidden test. Runs on Submit.</span>'
+      : t.kind === 'function' ? `<div class="lbl">input</div><pre>${esc(callStr(t.call, t.args))}</pre><div class="lbl">expected</div><pre>${esc(J(t.expected))}</pre>`
+      : opsTable(t)) + '</div></div>').join('');
+}
+
+function renderResults(r){
+  if (r.compile_error) {
+    $('#out').innerHTML = `<div class="summary bad">Compile / import error</div><pre class="err">${esc(r.compile_error)}</pre>` + (r.stdout ? `<div class="lbl">stdout</div><pre>${esc(r.stdout)}</pre>` : '');
+    return;
+  }
+  const n = r.results.length, ok = r.results.filter(x => x.status === 'pass').length;
+  let firstOpen = false;
+  let h = `<div class="summary ${ok === n ? 'ok' : 'bad'}">${ok === n ? (r.mode === 'submit' ? 'Accepted 🎉' : 'All visible tests pass') : r.timed_out ? 'Time limit exceeded' : 'Wrong answer'} · ${ok}/${n} passed <span class="hint">(${r.mode}, ${r.elapsed}s)</span></div>`;
+  if (ok === n && r.mode === 'run') h += '<div class="hint" style="margin:-6px 0 10px">Hit Submit to run the hidden tests too.</div>';
+  r.results.forEach(t => {
+    const open = t.status !== 'pass' && !firstOpen; if (open) firstOpen = true;
+    h += `<div class="trow ${t.status}${open ? ' open' : ''}"><div class="thead" onclick="this.parentNode.classList.toggle('open')"><span class="dot"></span><b>${esc(t.name)}</b><span class="tg">${esc(t.tag)}</span>${t.hidden ? '<span class="tg">hidden</span>' : ''}<span class="ms">${t.status === 'tle' ? 'TLE' : (t.ms ?? '') + ' ms'}</span></div><div class="tbody">`;
+    if (t.error) h += `<pre class="err">${esc(t.error)}</pre>`;
+    if (t.kind === 'class' && t.ops) {
+      if (t.window) h += `<div class="hint">Showing ops ${t.window[0]}–${t.window[0] + t.ops.length - 1} of ${t.window[1]} (around the first mismatch)</div>`;
+      h += opsTable(t, t.got || [], t.window ? t.window[0] : 0);
+    } else if (t.kind === 'function') {
+      h += `<div class="lbl">input</div><pre>${esc(t.args === '(large input)' ? t.call + '(…large input…)' : callStr(t.call, t.args))}</pre><div class="lbl">expected</div><pre>${esc(J(t.expected))}</pre>`;
+      if ('got' in t) h += `<div class="lbl">output</div><pre>${esc(J(t.got))}</pre>`;
+    }
+    if (t.stdout) h += `<div class="lbl">stdout</div><pre>${esc(t.stdout)}</pre>`;
+    h += '</div></div>';
+  });
+  $('#out').innerHTML = h;
+}
+
+async function run(mode){
+  if (!cur) return;
+  const k = key(), p = cur;
+  ['#runBtn','#submitBtn'].forEach(s => $(s).disabled = true);
+  $('#out').innerHTML = `<div class="summary"><span class="spin"></span>${mode === 'submit' ? 'Submitting' : 'Running'}…</div>` + (mode === 'submit' && p.timeout > 60 ? `<div class="hint">This problem has slow stretch tests (up to ${Math.round(p.timeout/60)} min).</div>` : '');
+  try {
+    const res = await api('/api/run', {company:p.company, slug:p.slug, code:cm.getValue(), mode});
+    lastRun[k] = res;
+    if (mode === 'submit' && res.results && res.results.every(x => x.status === 'pass')) {
+      const first = !solved(k); store.set('solved:' + k, {at: Date.now(), time: fmt(elapsedMs())});
+      if (first) toast(`Solved in ${fmt(elapsedMs())} 🎉`);
+      renderTree();
+    }
+    if (key() === k) renderResults(res);
+  } catch(e) { $('#out').innerHTML = `<pre class="err">Server error: ${esc(e.message)}. Is server.py running?</pre>`; }
+  ['#runBtn','#submitBtn'].forEach(s => $(s).disabled = false);
+}
+
+// ---------------------------------------------------------------- complexity view
+function logTicks(lo, hi){ const out = []; for (let e = Math.floor(Math.log10(lo)); e <= Math.ceil(Math.log10(hi)); e++) out.push(10 ** e); return out; }
+function chartSVG(series, ylab, yfmt, xlab){
+  const W = 440, H = 260, L = 58, R = 12, Tp = 10, B = 38;
+  const all = series.flatMap(s => s.pts);
+  if (!all.length) return '<div class="hint" style="padding:30px">No data.</div>';
+  const xs = all.map(p => p[0]), ys = all.map(p => Math.max(p[1], 1e-9));
+  let x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+  if (x0 === x1) { x0 /= 2; x1 *= 2; } if (y0 === y1) { y0 /= 2; y1 *= 2; }
+  y0 /= 1.5; y1 *= 1.5;
+  const lx = v => L + (Math.log(v) - Math.log(x0)) / (Math.log(x1) - Math.log(x0)) * (W - L - R);
+  const ly = v => H - B - (Math.log(Math.max(v,1e-9)) - Math.log(y0)) / (Math.log(y1) - Math.log(y0)) * (H - Tp - B);
+  let g = '';
+  logTicks(y0, y1).filter(v => v >= y0 && v <= y1).forEach(v => { g += `<line x1="${L}" x2="${W-R}" y1="${ly(v)}" y2="${ly(v)}" stroke="#333"/><text x="${L-6}" y="${ly(v)+4}" fill="#888" font-size="10" text-anchor="end">${yfmt(v)}</text>`; });
+  [...new Set(xs)].forEach(v => { g += `<text x="${lx(v)}" y="${H-B+14}" fill="#888" font-size="10" text-anchor="middle">${v >= 1000 ? (v/1000) + 'k' : v}</text>`; });
+  g += `<text x="${(L+W-R)/2}" y="${H-6}" fill="#888" font-size="11" text-anchor="middle">${esc(xlab)} (log scale)</text>`;
+  g += `<text x="12" y="${(Tp+H-B)/2}" fill="#888" font-size="11" text-anchor="middle" transform="rotate(-90 12 ${(Tp+H-B)/2})">${esc(ylab)}</text>`;
+  series.forEach(s => {
+    if (s.fit) g += `<path d="${s.fit.map((p,i) => (i ? 'L' : 'M') + lx(p[0]).toFixed(1) + ' ' + ly(p[1]).toFixed(1)).join(' ')}" stroke="${s.color}" stroke-width="1.5" stroke-dasharray="4 4" fill="none" opacity=".6"/>`;
+    if (s.pts.length) g += `<path d="${s.pts.map((p,i) => (i ? 'L' : 'M') + lx(p[0]).toFixed(1) + ' ' + ly(p[1]).toFixed(1)).join(' ')}" stroke="${s.color}" stroke-width="2.5" fill="none"/>`;
+    s.pts.forEach(p => g += `<circle cx="${lx(p[0])}" cy="${ly(p[1])}" r="3.5" fill="${s.color}"><title>n=${p[0]}: ${yfmt(p[1])}</title></circle>`);
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img">${g}</svg>`;
+}
+const fmtT = v => v >= 1 ? v.toFixed(2) + 's' : v >= 1e-3 ? (v*1e3).toFixed(v >= 0.1 ? 0 : 1) + 'ms' : (v*1e6).toFixed(0) + 'µs';
+const fmtB = v => v >= 1048576 ? (v/1048576).toFixed(1) + 'MB' : v >= 1024 ? (v/1024).toFixed(0) + 'KB' : Math.round(v) + 'B';
+const RANK = ['O(1)','O(log n)','O(n)','O(n log n)','O(n²)','O(n³)','O(2ⁿ)'];
+const PER_OP = {'O(1)':'O(1)','O(log n)':'O(1)','O(n)':'O(1)','O(n log n)':'O(log n)','O(n²)':'O(n)','O(n³)':'O(n²)','O(2ⁿ)':'O(2ⁿ)'};
+const fitCurve = (pts, fit) => {
+  if (!fit || !fit.c || pts.length < 2) return null;
+  const f = {'O(1)':n=>1,'O(log n)':n=>Math.log2(Math.max(n,2)),'O(n)':n=>n,'O(n log n)':n=>n*Math.log2(Math.max(n,2)),'O(n²)':n=>n*n,'O(n³)':n=>n**3,'O(2ⁿ)':n=>2**n}[fit.label];
+  return f ? pts.map(p => [p[0], fit.c * f(p[0])]) : null;
+};
+function verdict(mine, ref){
+  if (!mine || !ref) return '';
+  const a = RANK.indexOf(mine.label), b = RANK.indexOf(ref.label);
+  if (a < 0 || b < 0) return '';
+  if (a > b) return `<div class="verdict" style="color:var(--red)">Slower growth class than the reference. Can you do better?</div>`;
+  if (a < b) return `<div class="verdict" style="color:var(--green)">Grows slower than the reference. Nice (or the input is too small to tell).</div>`;
+  return `<div class="verdict" style="color:var(--green)">Matches the reference.</div>`;
+}
+async function complexity(){
+  if (!cur || !cur.has_scale) return;
+  const p = cur, k = key();
+  $('#cxModal').classList.add('on');
+  $('#cxBody').innerHTML = '<p><span class="spin"></span>Benchmarking your code on growing inputs… (up to ~30s)</p>';
+  let r;
+  try { r = await api('/api/complexity', {company:p.company, slug:p.slug, code:cm.getValue()}); }
+  catch(e) { $('#cxBody').innerHTML = `<pre class="err">${esc(e.message)}</pre>`; return; }
+  lastCx[k] = r;
+  if (r.compile_error) { $('#cxBody').innerHTML = `<pre class="err">${esc(r.compile_error)}</pre>`; return; }
+  if (r.error) { $('#cxBody').innerHTML = `<p>${esc(r.error)}</p>`; return; }
+  const M = r.mine, Rf = r.ref;
+  const pts = (x, key) => x.points.map(q => [q.n, q[key]]);
+  const lab = f => f ? f.label : '—';
+  const perop = f => r.per_op && f ? ` <span class="hint">(${PER_OP[f.label]} per op)</span>` : '';
+  let h = '';
+  if (M.error) h += `<div class="summary bad">Your code crashed while benchmarking</div><pre class="err">${esc(M.error)}</pre>`;
+  if (M.timed_out || (M.points.length < Rf.points.length && !M.error)) h += `<p class="err">Your code got too slow after n = ${M.points.at(-1)?.n ?? '?'}; larger sizes were skipped.</p>`;
+  h += `<div class="cx-chips">
+    <div class="chip"><div class="k">Time · yours / reference</div><div class="v"><span class="mine">${lab(M.time)}</span> <span class="hint">vs</span> <span class="ref">${lab(Rf.time)}</span></div>${perop(M.time)}${verdict(M.time, Rf.time)}</div>
+    <div class="chip"><div class="k">Extra space · yours / reference</div><div class="v"><span class="mine">${lab(M.space)}</span> <span class="hint">vs</span> <span class="ref">${lab(Rf.space)}</span></div>${perop(M.space)}${verdict(M.space, Rf.space)}</div>
+  </div>
+  <div class="legend"><span><i style="background:var(--accent)"></i>your code</span><span><i style="background:var(--blue)"></i>reference solution</span></div>
+  <div class="charts">
+    <div class="chart"><h4>Runtime</h4>${chartSVG([{pts:pts(Rf,'time'), color:'#4a9eff'}, {pts:pts(M,'time'), color:'#ffa116'}], 'time', fmtT, r.label)}</div>
+    <div class="chart"><h4>Peak extra memory</h4>${chartSVG([{pts:pts(Rf,'mem').map(q => [q[0], Math.max(q[1],1)]), color:'#4a9eff'}, {pts:pts(M,'mem').map(q => [q[0], Math.max(q[1],1)]), color:'#ffa116'}], 'memory', fmtB, r.label)}</div>
+  </div>
+  <table class="cx-table"><tr><th>n</th><th>your time</th><th>ref time</th><th>your memory</th><th>ref memory</th></tr>
+  ${r.sizes.map(n => { const a = M.points.find(q => q.n === n), b = Rf.points.find(q => q.n === n);
+    return `<tr><td>${n}</td><td>${a ? fmtT(a.time) : '—'}</td><td>${b ? fmtT(b.time) : '—'}</td><td>${a ? fmtB(a.mem) : '—'}</td><td>${b ? fmtB(b.mem) : '—'}</td></tr>`; }).join('')}
+  </table>
+  <p class="hint">${esc(r.label)}. Memory is the peak allocated during the call (input excluded), measured with tracemalloc. Small timings are noisy; trust the shape of the curve more than single points. Want the reasoning? Probe with "Complexity".</p>`;
+  $('#cxBody').innerHTML = h;
+}
+$('#cxBtn').onclick = complexity;
+$('#cxClose').onclick = () => $('#cxModal').classList.remove('on');
+
+// ---------------------------------------------------------------- probe
+function openProbe(){ if (!cur) return; $('#probeModal').classList.add('on'); setTimeout(() => $('#note').focus(), 0); }
+async function probe(){
+  const level = document.querySelector('input[name=lvl]:checked').value;
+  const body = {company:cur.company, slug:cur.slug, code:cm.getValue(), note:$('#note').value, level,
+                elapsed: fmt(elapsedMs()), last_run: lastRun[key()] || null, complexity: lastCx[key()] || null};
+  try {
+    const r = await api('/api/probe', body);
+    $('#probeModal').classList.remove('on'); $('#note').value = '';
+    let copied = false;
+    try { await navigator.clipboard.writeText(r.prompt); copied = true; } catch(e) {}
+    toast(`Probe #${r.probe} sent to Claude Code${copied ? ' · prompt also copied to clipboard' : ''}`);
+  } catch(e) { toast('Could not send probe: ' + e.message); }
+}
+$('#probeBtn').onclick = openProbe;
+$('#cancelProbe').onclick = () => $('#probeModal').classList.remove('on');
+$('#sendProbe').onclick = probe;
+$('#note').onkeydown = e => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') probe(); };
+
+// ---------------------------------------------------------------- misc buttons
+$('#runBtn').onclick = () => run('run');
+$('#submitBtn').onclick = () => run('submit');
+$('#resetBtn').onclick = () => { if (cur && confirm('Reset to starter code? Your current code will be lost.')) cm.setValue(cur.starter); };
+$('#mockBtn').onclick = () => {
+  const c = companies.find(x => x.slug === (cur?.company || store.get('last', '').split('/')[0])) || companies[0];
+  const pool = c.problems.filter(p => !solved(c.slug + '/' + p.slug));
+  const pick = (pool.length ? pool : c.problems)[Math.floor(Math.random() * (pool.length || c.problems.length))];
+  store.set('timer:' + c.slug + '/' + pick.slug, null);
+  store.set('code:' + c.slug + '/' + pick.slug, null);
+  load(c.slug, pick.slug).then(() => toast(`Interview mode: ${c.name}. Clock's running. Talk through your approach first.`));
+};
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') $$('.modal').forEach(m => m.classList.remove('on'));
+  if (e.altKey && (e.key === 'p' || e.key === 'π')) { e.preventDefault(); togglePause(); }
+});
+$$('.modal').forEach(m => m.onclick = e => { if (e.target === m) m.classList.remove('on'); });
+
+// ---------------------------------------------------------------- boot
+api('/api/companies').then(cs => {
+  companies = cs;
+  const want = (location.hash.slice(1) || store.get('last', '') || '').split('/');
+  const c = cs.find(x => x.slug === want[0]);
+  if (c && c.problems.some(p => p.slug === want[1])) load(want[0], want[1]); else home();
+  renderTree();
+}).catch(e => { $('#desc').innerHTML = `<pre class="err">Could not reach the server: ${esc(e.message)}</pre>`; });
+</script>
+</body>
+</html>

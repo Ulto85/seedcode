@@ -1,0 +1,15 @@
+{
+  "name": "Cognition",
+  "tagline": "Makers of Devin (an autonomous AI software engineer) and owners of Windsurf (an AI IDE, acquired 2025). Little first-hand loop data is public: the CEO describes the main engineering interview as building your own end-to-end coding agent in roughly 6–8 hours, and third-party guides describe a recruiter call, a practical live-coding screen and an in-person SF onsite.",
+  "notes": "Very few candidate-reported questions are public, so every problem here is written IN THE STYLE OF what is reported. None of them is a confirmed Cognition question. What is reported: CEO Scott Wu has said the interview has people 'build their own Devin in eight hours, and see how far they get', meaning a full end-to-end agent, and that high-level decision making matters more than language syntax. Third-party guides (not first-hand) describe a practical, pair-programming-style coding screen, sometimes in an unfamiliar language or library with docs allowed, and a product-flavored systems round (e.g. the sandbox an agent runs in). For the Windsurf/Codeium side, before the acquisition: a 2025 Glassdoor report describes a 45-minute round about building a search engine; another describes an AI-allowed OA plus two medium/medium-hard DS&A rounds; a 1point3acres thread describes a Codeium OA on file replication in Python. The problems here practice the pieces of a coding agent and a dev tool: the file-editing tool an agent calls, applying a model-generated patch, code search, and directory sync. Expect interviewers to care about getting a working end-to-end thing quickly, precise and model-friendly tool I/O, edge cases, and clear trade-off decisions.",
+  "sources": [
+    {"title": "Cheeky Pint: Cognition CEO Scott Wu on acquiring Windsurf ('build their own Devin in eight hours')", "url": "https://cheekypint.substack.com/p/cognition-ceo-scott-wu-on-acquiring"},
+    {"title": "AIBase: report on Cognition candidates rebuilding a Devin-like agent in 8 hours (Aug 2025)", "url": "https://news.aibase.com/tw/news/20890"},
+    {"title": "Scott Wu on X: performance culture, upfront in hiring", "url": "https://x.com/ScottWu46/status/1952776198947520659"},
+    {"title": "DesignGurus: What is the Cognition interview process like (third-party guide)", "url": "https://www.designgurus.io/answers/detail/what-is-the-cognition-interview-process-like-round-by-round"},
+    {"title": "techinterview.org: How Cognition hires the engineers behind Devin (third-party, unverified)", "url": "https://www.techinterview.org/post/3233476023/cognition-devin-engineering-interview/"},
+    {"title": "techinterview.org: The Windsurf (Codeium) interview loop (third-party)", "url": "https://www.techinterview.org/post/3233477397/windsurf-interview-guide/?format=md"},
+    {"title": "Glassdoor: Windsurf interview review, 'building a search engine' (Apr 2025)", "url": "https://www.glassdoor.co.uk/Interview/Windsurf-Interview-E9783376-RVW96538800.htm"},
+    {"title": "1point3acres: Codeium full-time SDE OA (file replication, Python)", "url": "https://www.1point3acres.com/interview/thread/1081080"}
+  ]
+}

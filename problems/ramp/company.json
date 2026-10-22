@@ -1,0 +1,16 @@
+{
+  "name": "Ramp",
+  "tagline": "Corporate cards and spend management. Loop: online assessment (often CodeSignal, multi-level), a live pair-programming phone screen, then a virtual onsite with coding, system design / frontend and a hiring-manager behavioral.",
+  "notes": "Most reported: flight records (who flew most, where was a user at time t, solved with per-user sorted flights + binary search), the URL / HTTP maze (BFS over endpoints with cycles, retries and 401 keys), detecting recurring transactions in a card ledger, and a spreadsheet with concatenation formulas and cycle detection. CodeSignal-style multi-level class problems (task manager, banking ledger, recipe manager) also show up. Problems are practical rather than puzzles: interviewers expect complete, working, tested code, stated assumptions, explicit edge cases (empty input, exact-boundary timestamps, cycles), bounded retries, and code that extends cleanly to the next part. Some rounds allow an AI assistant but check that you understand what it wrote.",
+  "sources": [
+    {"title": "PracHub: Ramp coding & algorithms questions", "url": "https://prachub.com/companies/ramp/categories/coding-and-algorithms"},
+    {"title": "PracHub: Track Users From Flight History", "url": "https://prachub.com/coding-questions/track-users-from-flight-history"},
+    {"title": "PracHub: Find User Airport at a Time", "url": "https://prachub.com/coding-questions/find-user-airport-at-a-time"},
+    {"title": "PracHub: Find an Exit in a URL Maze", "url": "https://prachub.com/coding-questions/find-an-exit-in-a-url-maze"},
+    {"title": "PracHub: Detect recurring transactions from a ledger", "url": "https://prachub.com/coding-questions/detect-recurring-transactions-from-a-ledger"},
+    {"title": "PracHub: Spreadsheet String Concatenation with Dependent Cells", "url": "https://prachub.com/coding-questions/spreadsheet-string-concatenation-with-dependent-cells"},
+    {"title": "PracHub: Ramp SWE interview guide 2026", "url": "https://prachub.com/interview-guide/ramp-software-engineer-interview-questions-guide-2026"},
+    {"title": "1point3acres: Ramp technical phone screen (recurring transactions)", "url": "https://www.1point3acres.com/interview/thread/1155507"},
+    {"title": "Glassdoor: Ramp interview reviews", "url": "https://www.glassdoor.co.uk/Interview/Ramp-Interview-E4211228-RVW100201216.htm"}
+  ]
+}

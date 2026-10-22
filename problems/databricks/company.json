@@ -1,0 +1,17 @@
+{
+  "name": "Databricks",
+  "tagline": "The data + AI platform behind Spark, Delta Lake and MLflow. Loop: recruiter call, ~60 min technical phone screen (CoderPad), then an onsite with 2-3 coding rounds, system design and a hiring-manager round.",
+  "notes": "The same handful of questions come up again and again: the CIDR / IP firewall rule matcher (first-match allow/deny, plus a whole-block follow-up), the snapshot set iterator, a key-value store that reports GET/PUT load over the last 5 minutes, the fastest commute mode on a grid (BFS per mode, follow-up allowing mode switches), and n x n / k-in-a-row tic-tac-toe. Interviewers want working, well-structured code fast, then push on complexity (O(1) iterator creation, O(32) IP lookups, bounded memory for the QPS window) and on edge cases. Expect follow-ups to be added live.",
+  "sources": [
+    {"title": "PracHub: Databricks coding & algorithms questions", "url": "https://prachub.com/companies/databricks/categories/coding-and-algorithms"},
+    {"title": "PracHub: Databricks SWE coding questions (page 2)", "url": "https://prachub.com/companies/databricks/positions/software-engineer/categories/coding-and-algorithms?page=2"},
+    {"title": "1point3acres: Databricks phone screen, IpFirewall", "url": "https://www.1point3acres.com/interview/thread/1185933"},
+    {"title": "1point3acres: Databricks phone screen, SnapshotSet", "url": "https://www.1point3acres.com/interview/thread/1113521"},
+    {"title": "PracHub: constant-time snapshot set iterator", "url": "https://prachub.com/coding-questions/build-a-constant-time-snapshot-set-iterator"},
+    {"title": "LeetCode Discuss: Databricks phone, custom hashset", "url": "https://leetcode.com/discuss/interview-question/1807986/databricks-phone-custom-hashset"},
+    {"title": "LeetCode Discuss: Databricks technical phone screen, BFS commute", "url": "https://leetcode.com/discuss/post/6411153/databricks-technical-phone-screen-bfs-by-3txb/"},
+    {"title": "1point3acres: Databricks phone screen, BFS grid transportation", "url": "https://www.1point3acres.com/interview/thread/1032987"},
+    {"title": "LeetCode Discuss: Databricks SDE, KV store load", "url": "https://leetcode.com/discuss/post/6525129/databricks-interview-sde-by-anonymous_us-gl2r/"},
+    {"title": "PracHub: fixed-window GET/PUT QPS tracking", "url": "https://prachub.com/interview-questions/implement-fixed-window-get-and-put-qps-tracking"}
+  ]
+}

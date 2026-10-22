@@ -1,0 +1,17 @@
+{
+  "name": "Mercor",
+  "tagline": "AI hiring and expert-talent marketplace that matches domain experts to AI labs for model training and evaluation work. Engineers report a recruiter call, sometimes an AI-run screen, a ~30-60 min technical screen with an engineer, then a long virtual onsite with coding, system design and an AI-assisted ('vibe coding') build.",
+  "notes": "Public detail is thin and reports disagree, so treat this as indicative. Technical screens are often rapid-fire and partly code-free: code review of a memoization cache (thread safety, unbounded growth), a charge-then-record payment flow (retries, idempotency), CSV-building code, and sorting-complexity curveballs ('the worst correct sort'). Onsite coding reported on PracHub includes one-way street parking (can every car park?), currency conversion through chained rates, a referral network (reach and flow centrality over a DAG) and a grid shortest path with obstacle eliminations; another candidate mentions finding duplicates with hash sets. Onsites also ask for something that works end to end on real input with your own dummy tests, and then improving a baseline with AI tools while the interviewer reviews your code. Interviewers care about working code, clear complexity reasoning, production instincts (idempotency, concurrency, edge cases), and being able to explain code you wrote with AI help. Of the problems here, parking and the referral network are reported (the referral rules are reconstructed); profile dedup and contractor payouts are written in the style of the reported rounds.",
+  "sources": [
+    {"title": "PracHub: Mercor interview questions", "url": "https://prachub.com/companies/mercor"},
+    {"title": "PracHub: Mercor coding & algorithms questions", "url": "https://prachub.com/companies/mercor/categories/coding-and-algorithms"},
+    {"title": "PracHub: one-way street parking with forward-only overflow", "url": "https://prachub.com/coding-questions/decide-whether-every-car-can-park-given-preferred-spots-and-forward-only-overflow"},
+    {"title": "PracHub: Implement a Referral Network", "url": "https://prachub.com/coding-questions/implement-a-referral-network"},
+    {"title": "PracHub: currency exchange via chained conversions", "url": "https://prachub.com/interview-questions/currency-exchange-rate-between-two-currencies-via-chained-conversions"},
+    {"title": "PracHub: deep-copy a dataset with tasks, responses and grades (design)", "url": "https://prachub.com/interview-questions/design-an-api-to-deep-copy-a-dataset-with-its-tasks-model-responses-and-grades"},
+    {"title": "Aced (formerly Exponent): Mercor SWE interview experience (duplicates with hash sets)", "url": "https://www.aced.io/experiences/mercor-software-engineer-interview-d5257b"},
+    {"title": "Blind: Mercor onsite experience (end-to-end build, then improve a baseline with AI)", "url": "https://www.teamblind.com/post/mercor-experience-vv02w0gy"},
+    {"title": "techinterview.org: Mercor interview guide (2026)", "url": "https://www.techinterview.org/companies/mercor-interview-guide/"},
+    {"title": "Mercor referrals page (20% of referral earnings up to a cap)", "url": "https://www.mercor.com/referrals/"}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Scale AI",
+  "tagline": "Data labeling and evaluation infrastructure for frontier AI. Loop is a recruiter call, a 60-min practical coding screen, then a virtual onsite with coding, system design, a project deep dive and culture fit.",
+  "notes": "Most reported: a dependency-aware task scheduler (TaskManager with add/consume, deadline priority, prerequisites), a party-planning interval problem (merge intervals per town, then idle gaps grouped by city), an object-oriented four-player card game simulation, and a grid update in the style of Game of Life. Questions are practical and multi-part; interviewers care about clean object/data modeling, stating assumptions out loud for underspecified rules, choosing the right data structure (heaps, interval merging) and testing edge cases as you go.",
+  "sources": [
+    {"title": "PracHub: Scale AI coding questions", "url": "https://prachub.com/companies/scale-ai/categories/coding-and-algorithms"},
+    {"title": "PracHub: Scale AI interview questions", "url": "https://prachub.com/companies/scale-ai"},
+    {"title": "PracHub: Implement a Dependency-Aware Task Scheduler", "url": "https://prachub.com/coding-questions/implement-a-dependency-aware-task-scheduler"},
+    {"title": "PracHub: Schedule Ready Tasks by Deadline", "url": "https://prachub.com/coding-questions/schedule-ready-tasks-by-deadline"},
+    {"title": "PracHub: Compute party hours per town and city gaps", "url": "https://prachub.com/coding-questions/compute-party-hours-per-town-and-city-gaps"},
+    {"title": "PracHub: Update a Neuron Grid", "url": "https://prachub.com/coding-questions/update-a-neuron-grid"},
+    {"title": "PracHub: Design and Simulate a Four-Player Card Game", "url": "https://prachub.com/interview-questions/design-and-simulate-a-four-player-card-game"},
+    {"title": "Glassdoor: Scale interview review (card hand scoring, Oct 2025)", "url": "https://www.glassdoor.com.au/Interview/Scale-Interview-E1656849-RVW103984515.htm"},
+    {"title": "Interview Query: Scale AI software engineer guide", "url": "https://www.interviewquery.com/interview-guides/scale-software-engineer"}
+  ]
+}

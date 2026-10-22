@@ -1,0 +1,15 @@
+{
+  "name": "Sierra",
+  "tagline": "Conversational AI agents for customer service (Bret Taylor & Clay Bavor). Loop: recruiter call, a ~60 min live technical screen (Python or TypeScript), often a take-home where you build a small support agent, then an onsite of debugging, an agent/project presentation and behavioral.",
+  "notes": "Reported technical-screen questions are practical, agent-plumbing problems rather than puzzles: page through a cursor API until it's exhausted and then compact records or a conversation history to a token budget, split Markdown into header-aware chunks under a size limit, call a flaky mock API with retries/backoff and resolve product IDs through fallbacks with caching, and graph-style work (spreadsheet cycle detection, related-item traversal). An online assessment variant merges debug-log time intervals and detects overlaps and gaps. Interviewers care about pinning down the contract first (inclusive limits, ties, empty and oversized inputs), loops that always terminate, not losing or duplicating data on failure, running totals instead of recomputing, and clean testable code. The onsite debugging round (a multi-file app plus logs, explain each bug's customer impact) is a big filter. Some reports say the coding screen is being replaced by an agent-flavored system design round, so confirm with your recruiter.",
+  "sources": [
+    {"title": "PracHub: Sierra company questions", "url": "https://prachub.com/companies/sierra"},
+    {"title": "PracHub: Fetch every page from a data API, then compact records to a token budget", "url": "https://prachub.com/interview-questions/fetch-every-page-from-a-data-api-then-compact-records-to-a-token-budget"},
+    {"title": "PracHub: Conversation agent history, paginated fetching then token-limit compaction", "url": "https://prachub.com/interview-questions/conversation-agent-history-paginated-fetching-then-token-limit-compaction"},
+    {"title": "PracHub: Split Markdown into header-aware chunks", "url": "https://prachub.com/coding-questions/split-markdown-into-header-aware-chunks"},
+    {"title": "PracHub: Process time intervals and detect overlaps/gaps", "url": "https://prachub.com/coding-questions/process-time-intervals-and-detect-overlaps-gaps"},
+    {"title": "PracHub: Sierra software engineer interview guide 2026", "url": "https://prachub.com/interview-guide/sierra-software-engineer-interview-questions-guide-2026"},
+    {"title": "Exponent: Sierra agent engineer interview guide", "url": "https://www.tryexponent.com/guides/sierra-agent-engineer-interview"},
+    {"title": "Exponent: Sierra APX interview experience (retries + catalog traversal)", "url": "https://www.tryexponent.com/experiences/sierra-ai-interview-67fe22"}
+  ]
+}

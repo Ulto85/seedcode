@@ -1,0 +1,17 @@
+{
+  "name": "Perplexity",
+  "tagline": "AI answer engine that searches the web and cites its sources. SWE loop: a technical screen (sometimes an online assessment) of practical, multi-part coding in Python, then an onsite with more coding, system design (often two rounds) and a debugging or project discussion.",
+  "notes": "Perplexity's reported coding questions are stateful, in-memory 'build a small system' problems with 3–4 parts that build on each other, not LeetCode puzzles. Most reported for SWE (2025–2026): a task manager with dependencies where failure cascades to dependents (one candidate was rejected after timing out on a large hidden test), an in-memory file system (strict mkdir/touch/ls/rm/rmdir plus a command runner, or a staged version that adds cd and relative paths), a time-versioned key-value store with range history and restore, and a credit tracker with expiring grants and out-of-order times. Some screens hand you a multi-file project with provided tests, so reading tests and debugging are part of the job. Interviewers care about moving fast through every part, pinning down edge cases and error behavior, keeping each extension a small local change, and efficiency: large hidden tests are reported to catch naive re-traversal. System design topics reported include a long-running query service, trending-query ranking, discovery recommendations and a resilient multi-provider LLM client.",
+  "sources": [
+    {"title": "PracHub: Perplexity interview questions", "url": "https://prachub.com/companies/perplexity"},
+    {"title": "PracHub: Implement task dependencies and failure (technical screen)", "url": "https://prachub.com/coding-questions/implement-task-dependencies-and-failure"},
+    {"title": "PracHub: In-memory file system, strict mkdir/touch/ls/rm/rmdir and a command runner (onsite)", "url": "https://prachub.com/interview-questions/in-memory-file-system-strict-mkdir-touch-ls-rm-rmdir-and-a-command-runner"},
+    {"title": "PracHub: In-memory file system, add cd and relative path support (technical screen)", "url": "https://prachub.com/interview-questions/in-memory-file-system-add-cd-and-relative-path-support"},
+    {"title": "PracHub: Implement time-versioned KV store with restore (online assessment)", "url": "https://prachub.com/coding-questions/implement-time-versioned-kv-store-with-restore"},
+    {"title": "PracHub: Design a CreditTracker with expirations (technical screen)", "url": "https://prachub.com/coding-questions/design-a-credittracker-with-expirations"},
+    {"title": "PracHub: Implement resilient LLM provider pool", "url": "https://prachub.com/interview-questions/implement-resilient-llm-provider-pool"},
+    {"title": "1point3acres: Perplexity SWE technical phone screen (task list with dependencies, timed out on a large test)", "url": "https://www.1point3acres.com/interview/thread/1172188"},
+    {"title": "1point3acres: Perplexity SWE onsite (two system design rounds, one DFS coding round)", "url": "https://www.1point3acres.com/interview/thread/1156495"},
+    {"title": "1point3acres: Perplexity SWE onsite (coding, system design, debugging)", "url": "https://www.1point3acres.com/interview/thread/1175318"}
+  ]
+}

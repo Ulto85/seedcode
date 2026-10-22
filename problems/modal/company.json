@@ -1,0 +1,14 @@
+{
+  "name": "Modal",
+  "tagline": "Serverless GPU and cloud compute for Python (custom container runtime, scheduler and lazily-loaded file system). Public reports describe a recruiter call, a ~60 min live technical screen, then a 4-5 round onsite: coding, systems design, an infrastructure/architecture deep dive and behavioral.",
+  "notes": "Very little first-hand data is public; treat this set as partly reconstructed. The only candidate-sourced question titles we found (PracHub, 2026) are fundamentals: sorting 100 million digits with ten counters, proving the forward Fisher-Yates shuffle is uniform, and explaining/hardening shell commands. A Glassdoor-based summary mentions sorting algorithms and reading/analysing existing code. Prep guides (unverified, no cited reports) say the coding rounds lean towards practical systems components: schedulers and task queues, GPU/CPU/memory allocators with an explicit fit policy, content-addressed layer/chunk caches with pinning, rate limiters and worker pools. The two systems problems here are written in that style and are labelled as such. Interviewers reportedly care about explaining complexity and memory use out loud, pinning down exact policies (fit rules, tie-breaks, eviction), and having read Modal's engineering blog on container launches and lazy image loading.",
+  "sources": [
+    {"title": "PracHub: Modal interview questions", "url": "https://prachub.com/companies/modal"},
+    {"title": "PracHub: Modal software engineer questions", "url": "https://prachub.com/companies/modal/positions/software-engineer"},
+    {"title": "Design Gurus: Modal interview process round by round (summarises Glassdoor reports)", "url": "https://www.designgurus.io/answers/detail/what-is-the-modal-interview-process-like-round-by-round"},
+    {"title": "TechPrep: Modal's interview process (2026)", "url": "https://www.techprep.app/blog/modal-interview-process"},
+    {"title": "techinterview.org: Modal interview guide 2026 (unverified)", "url": "https://www.techinterview.org/companies/modal/"},
+    {"title": "techinterview.org: What Modal Labs asks backend and infra engineers (unverified)", "url": "https://www.techinterview.org/post/3233475446/what-modal-labs-asks-backend-infra-engineers/"},
+    {"title": "Modal blog: Jonathon Belotti on fast container loading (lazy, content-addressed images)", "url": "https://modal.com/blog/jono-containers-talk"}
+  ]
+}

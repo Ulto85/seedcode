@@ -1,0 +1,18 @@
+{
+  "name": "Coinbase",
+  "tagline": "Crypto exchange and wallet. Loop is usually an online assessment or phone screen, then 2 practical coding rounds, system design and behavioral. Coding is done in a plain editor, often with no starter code, and you're expected to write your own tests.",
+  "notes": "Most reported: hand-written iterators (range / interleaving over a list of iterators, then follow-ups like peek, filter or laziness), exchange-flavoured state machines (order manager with LIVE/PAUSED/CANCELLED, limit order book with price-time matching), and progressive 'levels' in-memory systems (banking with top spenders and scheduled payments, in-memory DB with TTL, cloud storage). Interviewers care about clean class design, validating input before mutating state, O(1)/O(log n) per operation instead of scanning everything, and writing your own test cases in a blank editor.",
+  "sources": [
+    {"title": "PracHub: Coinbase coding & algorithms questions", "url": "https://prachub.com/companies/coinbase/categories/coding-and-algorithms"},
+    {"title": "PracHub: Coinbase interview questions (all categories)", "url": "https://prachub.com/companies/coinbase"},
+    {"title": "PracHub: Implement custom iterator classes", "url": "https://prachub.com/interview-questions/implement-custom-iterator-classes"},
+    {"title": "PracHub: Coinbase SWE onsite (crypto system design, handwritten iterator, food delivery), Jul 2025", "url": "https://prachub.com/interview-experiences/coinbase-software-engineer-interview-experience-crypto-system-design-a-handwritten-iterator-and-a-food-delivery-coding-round"},
+    {"title": "PracHub: Implement a crypto order management system", "url": "https://prachub.com/coding-questions/implement-a-crypto-order-management-system"},
+    {"title": "PracHub: Design an in-memory banking system", "url": "https://prachub.com/coding-questions/design-an-in-memory-banking-system"},
+    {"title": "LeetCode Discuss: Coinbase SDE3 Sep '24 (interleaving + range iterators)", "url": "https://leetcode.com/discuss/interview-experience/5843528/coinbase-sde3-remoteindia-sep-24-offer/"},
+    {"title": "LeetCode Discuss: Coinbase iterator question help", "url": "https://leetcode.com/discuss/interview-question/1956566/coinbase-interview-question-help-iterator"},
+    {"title": "Glassdoor: Coinbase interview review (order book)", "url": "https://www.glassdoor.com/Interview/Coinbase-Interview-RVW72074238.htm"},
+    {"title": "techinterview.org: Coinbase interview guide 2026 (limit order book / matching engine)", "url": "https://www.techinterview.org/companies/coinbase/"},
+    {"title": "Coinbase Exchange docs: matching engine (price-time priority)", "url": "https://docs.cdp.coinbase.com/exchange/concepts/matching-engine"}
+  ]
+}

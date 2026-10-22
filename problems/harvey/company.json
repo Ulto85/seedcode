@@ -1,0 +1,19 @@
+{
+  "name": "Harvey",
+  "tagline": "Legal AI: an LLM platform for law firms and in-house legal teams (drafting, research, document review, a document Vault). The loop is a recruiter call and hiring-manager screen, a ~60 min technical screen with one multi-part practical coding problem in Python, then a virtual onsite with 1-2 more coding rounds, an LLM/RAG system design round, a project deep dive and a behavioral/values round.",
+  "notes": "Harvey's coding questions are practical, multi-part and lean on strings, intervals and small stateful designs rather than puzzle algorithms. Most reported for SWE (2025-2026): source/citation highlighting (find every exact occurrence of a set of source strings in an LLM answer, wrap them in tags, merge overlapping or touching spans, count occurrences, then attach the distinct sources cited per region), a spreadsheet with formula cells, eager recomputation and cycle-rejecting writes (reported many times), an in-memory file system / document vault that creates missing directories and gives duplicate files the smallest free '(k)' suffix, and an onsite notebook exercise on embedding retrieval with cosine similarity evaluated with Recall@10 and MRR@10. Also reported: a cursor-based text editor, a duplicate-file finder that handles symlink cycles, and a database connection pool. Candidates say the problems are not individually hard but come with several follow-ups, so speed matters; interviewers want you to pin down edge cases (overlap vs touch, empty inputs, ties, invalid paths) before coding, keep mutations atomic, and talk through complexity.",
+  "sources": [
+    {"title": "PracHub: Harvey interview questions (pages 1-3)", "url": "https://prachub.com/companies/harvey"},
+    {"title": "PracHub: Highlight Exact Source Matches", "url": "https://prachub.com/coding-questions/highlight-exact-source-matches"},
+    {"title": "PracHub: Handle multi-source string matching and tagging", "url": "https://prachub.com/coding-questions/handle-multi-source-string-matching-and-tagging"},
+    {"title": "PracHub: Highlight Whole-Word Matches and Merge Overlapping Spans", "url": "https://prachub.com/coding-questions/highlight-whole-word-matches-and-merge-overlapping-spans"},
+    {"title": "PracHub: Eager Spreadsheet Formulas with Constant-Time Reads", "url": "https://prachub.com/interview-questions/eager-spreadsheet-formulas-with-constant-time-reads"},
+    {"title": "PracHub: Design a constrained in-memory file system", "url": "https://prachub.com/coding-questions/design-a-constrained-in-memory-file-system"},
+    {"title": "PracHub: Allocate Unique File Names in an In-Memory Vault", "url": "https://prachub.com/interview-questions/allocate-unique-file-names-in-an-in-memory-vault"},
+    {"title": "PracHub: Embedding Retrieval with Cosine Similarity in a Notebook", "url": "https://prachub.com/interview-questions/embedding-retrieval-with-cosine-similarity-in-a-notebook-and-choosing-the-metric"},
+    {"title": "PracHub: Implement retrieval and evaluation for a simple RAG", "url": "https://prachub.com/coding-questions/implement-retrieval-and-evaluation-for-a-simple-rag"},
+    {"title": "Taro: Harvey SWE II interview experience (source matching with strings and intervals)", "url": "https://www.jointaro.com/interviews/companies/harvey-ai/experiences/software-engineer-swe-ii-united-states-august-23-2025-no-offer-neutral-33abfdbd/"},
+    {"title": "Taro: Harvey senior SWE interview experience (multi-part technical screen)", "url": "https://www.jointaro.com/interviews/companies/harvey-ai/experiences/senior-software-engineer-united-states-august-21-2025-no-offer-neutral-f63b4d2c/"},
+    {"title": "techinterview.org: Harvey interview guide", "url": "https://www.techinterview.org/companies/harvey-ai-interview-guide/"}
+  ]
+}

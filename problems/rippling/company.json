@@ -1,0 +1,17 @@
+{
+  "name": "Rippling",
+  "tagline": "All-in-one HR, IT and finance platform (payroll, expenses, devices). Loop: recruiter call, a 60-min practical coding screen (some candidates may opt into an AI assistant), then onsite coding, system design and behavioral rounds.",
+  "notes": "Coding is low-level-design flavoured and money-centric: a small stateful class that grows with each follow-up. Most reported: the delivery cost tracker (drivers with hourly rates, record deliveries, total cost, then pay-up-to and unpaid cost, then max concurrent drivers in the last 24h), an expense rules engine (per-expense and per-trip rules evaluated from data), an article vote tracker, org-chart tree questions (height, promotions), and the classic key-value store with nested transactions. Interviewers care about code that actually runs, exact money handling (integer cents, no float drift, rounding once), extensible design that absorbs new requirements without rewrites, and stating the complexity of each method.",
+  "sources": [
+    {"title": "PracHub: Rippling coding questions", "url": "https://prachub.com/companies/rippling/categories/coding-and-algorithms"},
+    {"title": "PracHub: Bill deliveries with historical rates and deferred rounding", "url": "https://prachub.com/coding-questions/bill-deliveries-with-historical-rates-and-deferred-rounding"},
+    {"title": "PracHub: Balance tracker and interval merger (Rippling screen)", "url": "https://prachub.com/coding-questions/implement-a-balance-tracker-and-interval-merger"},
+    {"title": "PracHub: Evaluate expense and trip-level rules as data", "url": "https://prachub.com/coding-questions/evaluate-expense-and-trip-level-rules-as-data"},
+    {"title": "PracHub: Compute org height and minimal CEO promotions", "url": "https://prachub.com/coding-questions/compute-org-height-and-minimal-ceo-promotions"},
+    {"title": "PracHub: Implement an article voting tracker", "url": "https://prachub.com/coding-questions/implement-an-article-voting-tracker"},
+    {"title": "Hello Interview: Delivery cost tracker (Rippling, 7 reports)", "url": "https://www.hellointerview.com/community/questions/delivery-cost-tracker/cmpk7ar8g05iq08adcdmotog8"},
+    {"title": "LeetCode Discuss: Rippling SDE-2 phone screen (delivery cost)", "url": "https://leetcode.com/discuss/interview-experience/7140667"},
+    {"title": "LeetCode Discuss: Rippling phone screen, key-value datastore", "url": "https://leetcode.com/discuss/interview-question/4985212/Rippling-or-PhoneScreen-or-KeyValue-Datastore/"},
+    {"title": "Glassdoor: Rippling Software Engineer II interview questions", "url": "https://static.glassdoor.ca/Interview/Rippling-Software-Engineer-II-Interview-Questions-EI_IE2521509.0,8_KO9,29.htm"}
+  ]
+}

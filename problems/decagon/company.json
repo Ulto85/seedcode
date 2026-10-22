@@ -1,0 +1,10 @@
+{
+  "name": "Decagon",
+  "tagline": "AI customer support agents. Phone screen is ~45-60 min of practical coding; onsite adds pair coding, system design and a project deep dive.",
+  "notes": "Most reported: the cooking-app recipe cart (with versioning or undo/redo), tic-tac-toe game counting, and a CSAT sliding-window tracker. Interviewers care about clean class design, edge cases and space efficiency.",
+  "sources": [
+    {"title": "PracHub: Decagon coding questions", "url": "https://prachub.com/companies/decagon/categories/coding-and-algorithms"},
+    {"title": "PracHub: shopping cart versioning + tic-tac-toe", "url": "https://prachub.com/interview-experiences/decagon-software-engineer-interview-experience-shopping-cart-versioning-then-rejected-on-tic-tac-toe"},
+    {"title": "1point3acres: Decagon interview posts", "url": "https://www.1point3acres.com/interview/company/decagon"}
+  ]
+}
